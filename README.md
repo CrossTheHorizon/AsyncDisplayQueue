@@ -26,9 +26,11 @@ for imgView in cell.asyncView!.imgList
 {
     imgView.layer.masksToBounds = false
     imgView.image = nil
-    AKDisplayQueue.shared.AddTask(holdingView: cell, task: {
-        imgView.image = UIImage.init(named: "splashBackground1.jpg");
-        imgView.layer.masksToBounds = true
+    AKDisplayQueue.shared.AddTask(holdingView: cell, task: { [unowned imgView] in
+        withExtendedLifetime(imgView, {
+            imgView.image = UIImage.init(named: "splashBackground1.jpg");
+            imgView.layer.masksToBounds = true
+        })
     })
 }
 ```
