@@ -42,7 +42,31 @@ class AKDisplayQueue: NSObject {
 
     private override init() {
         super.init()
+        let runLoopObserver = CFRunLoopObserverCreateWithHandler(kCFAllocatorDefault, CFRunLoopActivity.beforeWaiting.rawValue, true, 300000) { (observer, activity) in
+            while self.tasks.count != 0 {
+                let taskItem = self.tasks.removeFirst()
+
+                // Determine whether this task is abandon
+                if taskItem.displayId == taskItem.holdingView.DisplayId!
+                {
+                    NSLog("Run task: %d", taskItem.displayId);
+                    taskItem.task!();
+                    break;
+                }
+            }
+            if self.tasks.count == 0
+            {
+                self.displayLink.isPaused = true;
+                NSLog("No more tasks");
+            }
+            else{
+                CFRunLoopWakeUp(CFRunLoopGetMain())
+            }
+        }
+
+        CFRunLoopAddObserver(CFRunLoopGetMain(), runLoopObserver, CFRunLoopMode.commonModes)
     }
+    
     
     deinit {
         self.displayLink.isPaused = true;
@@ -51,42 +75,10 @@ class AKDisplayQueue: NSObject {
     
     var tasks = [AkDisplayTask]()
     
-    // Create a observer to monitor vSync by CADisplayLink
-    lazy var displayLink =
-        { ()->CADisplayLink in
-            let ca = CADisplayLink.init(target: self, selector: #selector(fireTimer))
-            ca.isPaused = true;
-            ca.add(to: RunLoop.current, forMode: RunLoopMode.commonModes);
-            return ca;
-    }();
-    
-    @objc public func fireTimer() {
-        while self.tasks.count != 0 {
-            let taskItem = self.tasks.removeFirst()
-
-            // Determine whether this task is abandon
-            if taskItem.displayId == taskItem.holdingView.DisplayId!
-            {
-                NSLog("Run task: %d", taskItem.displayId);
-                taskItem.task!();
-                break;
-            }
-        }
-        if self.tasks.count == 0
-        {
-            self.displayLink.isPaused = true;
-            NSLog("No more tasks");
-        }
-    }
     
     // Add a task to list
     func AddTask(holdingView:UIView, task:@escaping (() -> Swift.Void))
     {
         tasks.append(AkDisplayTask(task: task, displayId: holdingView.DisplayId!, holdingView: holdingView));
-        
-        // If vSync timer not running, run it
-        if displayLink.isPaused {
-            displayLink.isPaused = false;
-        }
     }
 }
