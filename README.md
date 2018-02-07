@@ -1,7 +1,7 @@
 # AsyncDisplayQueue
 >This is a simple Tool to avoid delay in displaying cell of UITableView.
 >The draft idea is to separate slow UI works into many tasks. Only one task will be commit on one frame, so that no delay will happen.
-So I set up a queue, and use CADisplayLink to fire each tasks when vSync happen. And I add a DisplayId to find out whether the tableview is reused and the task is not necessory.
+So I set up a queue, and use RunLoop to triger. And I add a DisplayId to find out whether the tableview is reused and the task is not necessory.
 
 >This tool is very easy to use, here is an example,
 
