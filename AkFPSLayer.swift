@@ -2,8 +2,8 @@
 //  AkFPSLayer.swift
 //  test1
 //
-//  Created by cn-diss-mac1 on 2018/2/8.
-//  Copyright © 2018年 Kodak Alaris. All rights reserved.
+//  Created by AaronZhang on 2018/2/8.
+//  Copyright © 2018 Aaron Zhang. All rights reserved.
 //
 
 import UIKit
@@ -23,7 +23,7 @@ class AkFPSLayer: CAShapeLayer {
         self.frame = CGRect(x: 0, y: 80, width: UIScreen.main.bounds.size.width, height: 120)
 
         let size = UIScreen.main.bounds.size;
-        AkDisplayQueue.shared.AddTask(repeateTime: -1) {
+        AkDisplayQueue.shared.AddTask(repeateTime: -1) { task in
                 let tTime = CACurrentMediaTime()
                 self.countTime += (tTime - self.pTime);
                 self.pTime = tTime;

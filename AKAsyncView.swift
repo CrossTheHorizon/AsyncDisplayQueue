@@ -2,8 +2,8 @@
 //  AKAsyncView.swift
 //  test1
 //
-//  Created by cn-diss-mac1 on 2018/2/5.
-//  Copyright © 2018年 Kodak Alaris. All rights reserved.
+//  Created by AaronZhang on 2018/2/5.
+//  Copyright © 2018 Aaron Zhang. All rights reserved.
 //
 
 import UIKit
@@ -45,13 +45,14 @@ class AKAsyncView: UIView {
             task()
             return;
         }
-
+        
+        let size = CGSize.init(width: self.bounds.size.width, height: self.bounds.size.height);
         displayQueue.addOperation({
             if self.displayId != curdisplayId
             {
                 return;
             }
-            let size = CGSize.init(width: self.bounds.size.width, height: self.bounds.size.height);
+            
             UIGraphicsBeginImageContext(size)
             guard let context = UIGraphicsGetCurrentContext() else {
                 // cannot create context - handle error

@@ -2,8 +2,8 @@
 //  AkAsyncQueue.swift
 //  test1
 //
-//  Created by cn-diss-mac1 on 2018/2/13.
-//  Copyright © 2018年 Kodak Alaris. All rights reserved.
+//  Created by AaronZhang on 2018/2/13.
+//  Copyright © 2018 Aaron Zhang. All rights reserved.
 //
 
 import UIKit
@@ -13,8 +13,8 @@ class AssociatedId
     var id = 0;
 }
 
-struct AkAsyncTask {
-    var task:(() -> Swift.Void)?;
+class AkAsyncTask {
+    var task:((_ taskITem:AkAsyncTask) -> Swift.Void)?;
     
     var taskId = 0;
     var associatedId:AssociatedId?;
@@ -25,7 +25,7 @@ struct AkAsyncTask {
     // limit repeat times
     var repeateTime = 1;
     
-    init(associatedId:AssociatedId?, taskWeight:Int = 100, repeateTime:Int = 1, task:(() -> Swift.Void)?) {
+    init(associatedId:AssociatedId?, taskWeight:Int = 100, repeateTime:Int = 1, task:((_ taskITem:AkAsyncTask) -> Swift.Void)?) {
         self.associatedId = associatedId;
         taskId = associatedId?.id ?? 0
         self.taskWeight = taskWeight;
@@ -49,7 +49,7 @@ class AkAsyncQueue: NSObject {
     }
     
     // Add a task to list
-    public func AddTask(associatedId:AssociatedId? = nil, taskWeight:Int = 0, repeateTime:Int = 1, task:@escaping (() -> Swift.Void))
+    public func AddTask(associatedId:AssociatedId? = nil, taskWeight:Int = 0, repeateTime:Int = 1, task:@escaping ((_ taskITem:AkAsyncTask) -> Swift.Void))
     {
         tasks.append(AkAsyncTask.init(associatedId: associatedId, taskWeight: taskWeight, repeateTime: repeateTime, task: task))
         Start();
@@ -72,7 +72,7 @@ class AkAsyncQueue: NSObject {
         var curTaskWeightOnLoop = 0;
         var index = 0
         while self.tasks.count > index {
-            var taskItem = self.tasks[index]
+            let taskItem = self.tasks[index]
             if taskItem.repeateTime > 0
             {
                 taskItem.repeateTime -= 1;
@@ -89,7 +89,7 @@ class AkAsyncQueue: NSObject {
             // Determine whether this task is abandon
             if taskItem.associatedId == nil || taskItem.associatedId?.id == taskItem.taskId
             {
-                taskItem.task!();
+                taskItem.task!(taskItem);
                 curTaskWeightOnLoop += taskItem.taskWeight;
                 if curTaskWeightOnLoop >= self.maxTaskWeight {
                     break;

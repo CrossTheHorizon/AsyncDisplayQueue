@@ -2,8 +2,8 @@
 //  ViewController.swift
 //  test1
 //
-//  Created by cn-diss-mac1 on 2018/1/31.
-//  Copyright © 2018年 Kodak Alaris. All rights reserved.
+//  Created by AaronZhang on 2018/1/31.
+//  Copyright © 2018 Aaron Zhang. All rights reserved.
 //
 
 import UIKit
@@ -18,6 +18,7 @@ class TableViewCell1: UITableViewCell {
     }
     override func layoutIfNeeded() {
         super.layoutIfNeeded()
+        print("layout cell: \(self.indexPath.row)")
     }
     public var asyncView:TestAsyncView?
 }
@@ -29,6 +30,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         self.view.layer.addSublayer(AkFPSLayer.init());
+        tb1.estimatedRowHeight = 88;
+        tb1.rowHeight = UITableViewAutomaticDimension
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -52,25 +55,27 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         return 20
     }
 
-    var cnt = 0;
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        print("height: \(cnt)")
-        return 88
-    }
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        print("height: \(indexPath.row)")
+//        return 88
+//    }
 
-    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 88
-    }
+//    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+//        print("est height: \(indexPath.row)")
+//        return 88
+//    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tb1.dequeueReusableCell(withIdentifier: "cellActivitiesIdentifier") as! TableViewCell1;
-
+        cell.indexPath = indexPath;
+        print("cell: \(indexPath.row)")
+        
         cell.DisplayId.id += 1;
         for imgView in cell.asyncView!.imgList
         {
             imgView.layer.masksToBounds = false
             imgView.alpha = 0;
-            AKRunloopQueue.shared.AddTask(associatedId: cell.DisplayId, taskWeight: 100, task:  { [unowned imgView] in
+            AKRunloopQueue.shared.AddTask(associatedId: cell.DisplayId, taskWeight: 100, task:  { [unowned imgView](task) in
                 withExtendedLifetime(imgView, {
                     imgView.image = UIImage.init(named: "splashBackground1.jpg");
                     imgView.alpha = 1;
@@ -79,7 +84,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             })
         }
         
-        cell.layoutIfNeeded()
+        //cell.layoutIfNeeded()
         return cell;
     }
 }

@@ -7,15 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8424EFC42033C57B0058634C /* AKAsyncView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8424EFBB2033C57A0058634C /* AKAsyncView.swift */; };
-		8424EFC52033C57B0058634C /* AKRunloopQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8424EFBC2033C57A0058634C /* AKRunloopQueue.swift */; };
-		8424EFC62033C57B0058634C /* AkDisplayQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8424EFBD2033C57A0058634C /* AkDisplayQueue.swift */; };
-		8424EFC72033C57B0058634C /* AKNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8424EFBE2033C57B0058634C /* AKNetwork.swift */; };
-		8424EFC82033C57B0058634C /* AkAsyncQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8424EFBF2033C57B0058634C /* AkAsyncQueue.swift */; };
-		8424EFC92033C57B0058634C /* AkExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8424EFC02033C57B0058634C /* AkExtensions.swift */; };
-		8424EFCA2033C57B0058634C /* AKTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8424EFC12033C57B0058634C /* AKTableViewCell.swift */; };
-		8424EFCB2033C57B0058634C /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 8424EFC22033C57B0058634C /* README.md */; };
-		8424EFCC2033C57B0058634C /* AkFPSLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8424EFC32033C57B0058634C /* AkFPSLayer.swift */; };
+		570CB44A2034226A00BBBD76 /* AKAsyncView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570CB4412034226A00BBBD76 /* AKAsyncView.swift */; };
+		570CB44B2034226A00BBBD76 /* AKRunloopQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570CB4422034226A00BBBD76 /* AKRunloopQueue.swift */; };
+		570CB44C2034226A00BBBD76 /* AkExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570CB4432034226A00BBBD76 /* AkExtensions.swift */; };
+		570CB44D2034226A00BBBD76 /* AKNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570CB4442034226A00BBBD76 /* AKNetwork.swift */; };
+		570CB44E2034226A00BBBD76 /* AkAsyncQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570CB4452034226A00BBBD76 /* AkAsyncQueue.swift */; };
+		570CB44F2034226A00BBBD76 /* AkFPSLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570CB4462034226A00BBBD76 /* AkFPSLayer.swift */; };
+		570CB4502034226A00BBBD76 /* AKDisplayQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570CB4472034226A00BBBD76 /* AKDisplayQueue.swift */; };
+		570CB4512034226A00BBBD76 /* AKTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570CB4482034226A00BBBD76 /* AKTableViewCell.swift */; };
+		570CB4522034226A00BBBD76 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 570CB4492034226A00BBBD76 /* README.md */; };
+		5790E8D520372CB0006D9556 /* AKStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 5790E8D420372CB0006D9556 /* AKStorage.m */; };
 		84708F762021AA3F00217C39 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84708F752021AA3F00217C39 /* AppDelegate.swift */; };
 		84708F782021AA3F00217C39 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84708F772021AA3F00217C39 /* ViewController.swift */; };
 		84708F7B2021AA3F00217C39 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84708F792021AA3F00217C39 /* Main.storyboard */; };
@@ -32,15 +33,18 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		8424EFBB2033C57A0058634C /* AKAsyncView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AKAsyncView.swift; path = ../../../AKAsyncView.swift; sourceTree = "<group>"; };
-		8424EFBC2033C57A0058634C /* AKRunloopQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AKRunloopQueue.swift; path = ../../../AKRunloopQueue.swift; sourceTree = "<group>"; };
-		8424EFBD2033C57A0058634C /* AkDisplayQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AkDisplayQueue.swift; path = ../../../AkDisplayQueue.swift; sourceTree = "<group>"; };
-		8424EFBE2033C57B0058634C /* AKNetwork.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AKNetwork.swift; path = ../../../AKNetwork.swift; sourceTree = "<group>"; };
-		8424EFBF2033C57B0058634C /* AkAsyncQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AkAsyncQueue.swift; path = ../../../AkAsyncQueue.swift; sourceTree = "<group>"; };
-		8424EFC02033C57B0058634C /* AkExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AkExtensions.swift; path = ../../../AkExtensions.swift; sourceTree = "<group>"; };
-		8424EFC12033C57B0058634C /* AKTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AKTableViewCell.swift; path = ../../../AKTableViewCell.swift; sourceTree = "<group>"; };
-		8424EFC22033C57B0058634C /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../../../README.md; sourceTree = "<group>"; };
-		8424EFC32033C57B0058634C /* AkFPSLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AkFPSLayer.swift; path = ../../../AkFPSLayer.swift; sourceTree = "<group>"; };
+		570CB4412034226A00BBBD76 /* AKAsyncView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AKAsyncView.swift; path = ../../../AKAsyncView.swift; sourceTree = "<group>"; };
+		570CB4422034226A00BBBD76 /* AKRunloopQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AKRunloopQueue.swift; path = ../../../AKRunloopQueue.swift; sourceTree = "<group>"; };
+		570CB4432034226A00BBBD76 /* AkExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AkExtensions.swift; path = ../../../AkExtensions.swift; sourceTree = "<group>"; };
+		570CB4442034226A00BBBD76 /* AKNetwork.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AKNetwork.swift; path = ../../../AKNetwork.swift; sourceTree = "<group>"; };
+		570CB4452034226A00BBBD76 /* AkAsyncQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AkAsyncQueue.swift; path = ../../../AkAsyncQueue.swift; sourceTree = "<group>"; };
+		570CB4462034226A00BBBD76 /* AkFPSLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AkFPSLayer.swift; path = ../../../AkFPSLayer.swift; sourceTree = "<group>"; };
+		570CB4472034226A00BBBD76 /* AKDisplayQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AKDisplayQueue.swift; path = ../../../AKDisplayQueue.swift; sourceTree = "<group>"; };
+		570CB4482034226A00BBBD76 /* AKTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AKTableViewCell.swift; path = ../../../AKTableViewCell.swift; sourceTree = "<group>"; };
+		570CB4492034226A00BBBD76 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../../../README.md; sourceTree = "<group>"; };
+		5790E8D220372BBB006D9556 /* Swift-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Swift-Bridging-Header.h"; sourceTree = "<group>"; };
+		5790E8D320372CB0006D9556 /* AKStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKStorage.h; sourceTree = "<group>"; };
+		5790E8D420372CB0006D9556 /* AKStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKStorage.m; sourceTree = "<group>"; };
 		84708F722021AA3F00217C39 /* test1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = test1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84708F752021AA3F00217C39 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		84708F772021AA3F00217C39 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -69,20 +73,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		8424EFBA2033C5340058634C /* AaronKit */ = {
+		570CB4402034225700BBBD76 /* Kits */ = {
 			isa = PBXGroup;
 			children = (
-				8424EFBF2033C57B0058634C /* AkAsyncQueue.swift */,
-				8424EFBB2033C57A0058634C /* AKAsyncView.swift */,
-				8424EFBD2033C57A0058634C /* AkDisplayQueue.swift */,
-				8424EFC02033C57B0058634C /* AkExtensions.swift */,
-				8424EFC32033C57B0058634C /* AkFPSLayer.swift */,
-				8424EFBE2033C57B0058634C /* AKNetwork.swift */,
-				8424EFBC2033C57A0058634C /* AKRunloopQueue.swift */,
-				8424EFC12033C57B0058634C /* AKTableViewCell.swift */,
-				8424EFC22033C57B0058634C /* README.md */,
+				5790E8D320372CB0006D9556 /* AKStorage.h */,
+				5790E8D420372CB0006D9556 /* AKStorage.m */,
+				570CB4452034226A00BBBD76 /* AkAsyncQueue.swift */,
+				570CB4412034226A00BBBD76 /* AKAsyncView.swift */,
+				570CB4472034226A00BBBD76 /* AKDisplayQueue.swift */,
+				570CB4432034226A00BBBD76 /* AkExtensions.swift */,
+				570CB4462034226A00BBBD76 /* AkFPSLayer.swift */,
+				570CB4442034226A00BBBD76 /* AKNetwork.swift */,
+				570CB4422034226A00BBBD76 /* AKRunloopQueue.swift */,
+				570CB4482034226A00BBBD76 /* AKTableViewCell.swift */,
+				570CB4492034226A00BBBD76 /* README.md */,
 			);
-			path = AaronKit;
+			path = Kits;
 			sourceTree = "<group>";
 		};
 		84708F692021AA3F00217C39 = {
@@ -104,7 +110,8 @@
 		84708F742021AA3F00217C39 /* test1 */ = {
 			isa = PBXGroup;
 			children = (
-				8424EFBA2033C5340058634C /* AaronKit */,
+				5790E8D220372BBB006D9556 /* Swift-Bridging-Header.h */,
+				570CB4402034225700BBBD76 /* Kits */,
 				84B858DA2033C4F500A9BAF9 /* View */,
 				84708F7C2021AA3F00217C39 /* Assets.xcassets */,
 				84708F7E2021AA3F00217C39 /* LaunchScreen.storyboard */,
@@ -159,10 +166,11 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0900;
 				LastUpgradeCheck = 0900;
-				ORGANIZATIONNAME = "Kodak Alaris";
+				ORGANIZATIONNAME = "Aaron Zhang";
 				TargetAttributes = {
 					84708F712021AA3F00217C39 = {
 						CreatedOnToolsVersion = 9.0;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -193,7 +201,7 @@
 				84708F8B2022B8DE00217C39 /* splashBackground1.jpg in Resources */,
 				84708F802021AA3F00217C39 /* LaunchScreen.storyboard in Resources */,
 				84708FA1202D854500217C39 /* car.png in Resources */,
-				8424EFCB2033C57B0058634C /* README.md in Resources */,
+				570CB4522034226A00BBBD76 /* README.md in Resources */,
 				84708F7D2021AA3F00217C39 /* Assets.xcassets in Resources */,
 				84708F7B2021AA3F00217C39 /* Main.storyboard in Resources */,
 				84708FA2202D854D00217C39 /* wheel.png in Resources */,
@@ -208,20 +216,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				84708F97202BE7FB00217C39 /* ViewController1.swift in Sources */,
-				8424EFC42033C57B0058634C /* AKAsyncView.swift in Sources */,
+				570CB44A2034226A00BBBD76 /* AKAsyncView.swift in Sources */,
+				570CB4502034226A00BBBD76 /* AKDisplayQueue.swift in Sources */,
 				84708F782021AA3F00217C39 /* ViewController.swift in Sources */,
+				5790E8D520372CB0006D9556 /* AKStorage.m in Sources */,
 				84708F99202BEBB500217C39 /* ViewController2.swift in Sources */,
-				8424EFC82033C57B0058634C /* AkAsyncQueue.swift in Sources */,
+				570CB44E2034226A00BBBD76 /* AkAsyncQueue.swift in Sources */,
 				84BAFAFB2032CDA900C53CAD /* TestAsyncView.swift in Sources */,
-				8424EFC52033C57B0058634C /* AKRunloopQueue.swift in Sources */,
+				570CB44B2034226A00BBBD76 /* AKRunloopQueue.swift in Sources */,
 				84708F9B202C1FB000217C39 /* ViewControllerNt.swift in Sources */,
-				8424EFC92033C57B0058634C /* AkExtensions.swift in Sources */,
-				8424EFCA2033C57B0058634C /* AKTableViewCell.swift in Sources */,
+				570CB44C2034226A00BBBD76 /* AkExtensions.swift in Sources */,
 				84708F9F202D812D00217C39 /* sViewController.swift in Sources */,
-				8424EFC62033C57B0058634C /* AkDisplayQueue.swift in Sources */,
 				84708F762021AA3F00217C39 /* AppDelegate.swift in Sources */,
-				8424EFCC2033C57B0058634C /* AkFPSLayer.swift in Sources */,
-				8424EFC72033C57B0058634C /* AKNetwork.swift in Sources */,
+				570CB44F2034226A00BBBD76 /* AkFPSLayer.swift in Sources */,
+				570CB44D2034226A00BBBD76 /* AKNetwork.swift in Sources */,
+				570CB4512034226A00BBBD76 /* AKTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -358,6 +367,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WB9PMSXHSQ;
 				INFOPLIST_FILE = test1/Info.plist;
@@ -365,6 +375,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kodakalaris.testApp.test1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "test1/Swift-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -374,6 +386,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WB9PMSXHSQ;
 				INFOPLIST_FILE = test1/Info.plist;
@@ -381,6 +394,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kodakalaris.testApp.test1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "test1/Swift-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

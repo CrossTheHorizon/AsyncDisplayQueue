@@ -2,8 +2,8 @@
 //  ViewController1.swift
 //  test1
 //
-//  Created by cn-diss-mac1 on 2018/2/8.
-//  Copyright © 2018年 Kodak Alaris. All rights reserved.
+//  Created by AaronZhang on 2018/2/8.
+//  Copyright © 2018 Aaron Zhang. All rights reserved.
 //
 
 import UIKit
@@ -50,7 +50,7 @@ class ViewController2: UIViewController, UITableViewDelegate, UITableViewDataSou
         }
 
         cell.DisplayId.id += 1;
-        AkDisplayQueue.shared.AddTask(associatedId:cell.DisplayId, taskWeight: 100) {
+        AkDisplayQueue.shared.AddTask(associatedId:cell.DisplayId, taskWeight: 100) { task in
             cell.asyncView!.render(cell.DisplayId.id) { ()->Void in
                 for imgView in cell.asyncView!.imgList
                 {

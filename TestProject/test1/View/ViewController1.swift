@@ -2,8 +2,8 @@
 //  ViewController1.swift
 //  test1
 //
-//  Created by cn-diss-mac1 on 2018/2/8.
-//  Copyright © 2018年 Kodak Alaris. All rights reserved.
+//  Created by AaronZhang on 2018/2/8.
+//  Copyright © 2018 Aaron Zhang. All rights reserved.
 //
 
 import UIKit
