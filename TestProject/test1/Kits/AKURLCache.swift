@@ -9,10 +9,10 @@
 import UIKit
 
 class AKURLCacheItem: AKCacheItem {
-    var eTag = "";
-    var lastModify = "";
+    var eTag:String?;
+    var lastModify:String?;
     
-    init(type:AKCacheType = .Common, dueDate:Int = 7, data: Data? = nil, ETag:String = "", LastModify:String = "") {
+    init(type:AKCacheType, dueDate:Int, data: Data? = nil, ETag:String? = nil, LastModify:String? = nil) {
         super.init(type: type, dueDate: dueDate, data: data);
         self.eTag = ETag;
         self.lastModify = LastModify;
@@ -20,8 +20,8 @@ class AKURLCacheItem: AKCacheItem {
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder);
-        eTag = aDecoder.decodeObject(forKey: "eTag") as! String;
-        lastModify = aDecoder.decodeObject(forKey: "lastModify") as! String;
+        eTag = aDecoder.decodeObject(forKey: "eTag") as? String;
+        lastModify = aDecoder.decodeObject(forKey: "lastModify") as? String;
     }
     override func encode(with aCoder: NSCoder) {
         super.encode(with: aCoder)

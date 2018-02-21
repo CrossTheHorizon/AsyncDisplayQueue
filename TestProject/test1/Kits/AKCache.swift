@@ -11,19 +11,17 @@ enum AKCacheType:Int
 {
     case DiskOnly = 0, Protected, Common
 }
-class AKCacheItem: NSObject, NSCoding {
+class AKCacheItem:  NSCoding {
     var type = AKCacheType.Common
     var data:Data?;
     var due_date = 7;
     var file_name = "";
     init(type:AKCacheType = .Common, dueDate:Int = 7, data: Data? = nil) {
-        super.init();
         self.type = type;
         self.due_date = dueDate;
         self.data = data;
     }
     required init?(coder aDecoder: NSCoder) {
-        super.init()
         file_name = aDecoder.decodeObject() as! String;
         due_date = aDecoder.decodeObject() as! Int;
         type = AKCacheType.init(rawValue: aDecoder.decodeObject() as! Int)!;
@@ -39,26 +37,42 @@ class AKCacheItem: NSObject, NSCoding {
     }
 }
 
-class AKCache: NSObject {
+class AKCache {
 
+    static let shared = AKCache()
+    var memoryLimit = 100000;
+    var diskLimit = 500000;
+    
     private let queue = DispatchQueue(label: "SafeArrayQueue", attributes: .concurrent);
     private var itemLst = [String: AKCacheItem]();
+    private var clearCache = [String]();
     private let storage = AKStorage();
-    static let shared = AKCache()
     private let tempFilePath:String;
-    private override init() {
-        tempFilePath = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.cachesDirectory,FileManager.SearchPathDomainMask.userDomainMask, true)[0]
-        super.init();
+    private init() {
+        tempFilePath = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.cachesDirectory,
+                                                           FileManager.SearchPathDomainMask.userDomainMask, true)[0];
+
+        // Reveice Memory warning
+        NotificationCenter.default.addObserver(self, selector: #selector(didReceiveMemoryWarning), name: NSNotification.Name.UIApplicationDidReceiveMemoryWarning, object: nil);
     }
+    
     deinit {
         
     }
+    
+    @objc func didReceiveMemoryWarning() {
+        ClearMemory();
+    }
+    
     func storeItem(_ value:AKCacheItem, forKey key:String) ->Bool {
         queue.async(flags: .barrier) {
             // 写操作
             // Memory cache
             if value.type != .DiskOnly {
                 self.itemLst.updateValue(value, forKey: key);
+//                if value.type == .Common {
+//                    self.clearCache.append(key);
+//                }
             }
             
             // Write to file if needed (larger than 16k)
@@ -87,6 +101,7 @@ class AKCache: NSObject {
 
         return true;
     }
+    
     func getItem(forKey key:String) -> AKCacheItem? {
         var rst:AKCacheItem? = nil;
         queue.sync {
@@ -105,4 +120,36 @@ class AKCache: NSObject {
         return rst;
     }
 
+    func ClearMemory()
+    {
+        queue.async(flags: .barrier) {
+            var pIndex:DictionaryIndex<String, AKCacheItem>?;
+            var index = self.itemLst.startIndex;
+            while index != self.itemLst.endIndex
+            {
+                if self.itemLst[index].value.type == AKCacheType.Common
+                {
+                    self.itemLst.remove(at: index);
+                    if pIndex != nil{
+                        index = self.itemLst.index(after: pIndex!);
+                    }
+                    else{
+                        index = self.itemLst.startIndex;
+                    }
+                }
+                else
+                {
+                    pIndex = index;
+                    index = self.itemLst.index(after: pIndex!);
+                }
+            }
+        }
+    }
+    
+    static func ClearStorage()
+    {
+        DispatchQueue.global(qos: .utility).async {
+            
+        }
+    }
 }
