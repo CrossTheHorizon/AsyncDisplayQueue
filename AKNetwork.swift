@@ -19,7 +19,16 @@ class AKNetwork:NSObject, URLSessionDelegate, URLSessionDataDelegate {
         URLCache.shared.removeAllCachedResponses()
     }
     func Call() {
-        let cache = AKStorage()
+        let img = UIImage.init(named: "splashBackground1.jpg");
+        let ci = AKURLCacheItem.init(type: .DiskOnly, data: UIImageJPEGRepresentation(img!, 1), ETag: "dddd", LastModify: "sadfljk");
+        let url = "ssssd";
+
+        let cache = AKCache.shared;
+        cache.storeItem(ci, forKey: url);
+        
+        let ccc = cache.getURLItem(forKey: url)
+        
+        return;
         let urlString
         //= "http://www.baidu.com";
         = "http://speed-fun-driver.de/slike/SFD_Header-graf.jpg"

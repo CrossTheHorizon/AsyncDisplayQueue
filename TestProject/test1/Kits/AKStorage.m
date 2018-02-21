@@ -7,7 +7,7 @@
 //
 
 #import "AKStorage.h"
-#import "AKLog.h"
+//#import "AKLog.h"
 #import <sqlite3.h>
 
 #define DBNAME    @"AKStorage.sqlite"
@@ -19,42 +19,48 @@
 @implementation AKStorage
 {
     sqlite3 *db;
-    sqlite3_stmt *stmtInst, *stmtQuery, *stmtDelete;
+    sqlite3_stmt *stmtInst, *stmtQuery, *stmtDelete, *stmtClear;
+    dispatch_semaphore_t lckStatement;
 }
 
--(instancetype)init
+- (instancetype)init
 {
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documents = [paths objectAtIndex:0];
-    NSString *database_path = [documents stringByAppendingPathComponent:DBNAME];
-    
-    if (sqlite3_open_v2([database_path UTF8String], &db, SQLITE_OPEN_READWRITE | SQLITE_OPEN_CREATE
-             | SQLITE_OPEN_NOMUTEX | SQLITE_OPEN_SHAREDCACHE, NULL) != SQLITE_OK) {
-        sqlite3_close(db);
-        NSLog(@"数据库打开失败");
-        return self;
-    }
-    if ([self dbInitialize])
+    self = [super init];
+    if (![self dbInitialize])
     {
-        NSString *str = @"test vavdsa122";
-        [self dbSaveWithKey:@"fdsdf" value:[str dataUsingEncoding:NSUTF8StringEncoding] dueDate:2];
-        NSData* dd = [self dbValueForKey:@"fdsdf"];
-        str = [[NSString alloc] initWithData: dd encoding:NSUTF8StringEncoding];
-        NSLog(str);
+        NSLog(@"Error initialize storage database");
     }
 
-    [self dbClose];
     return self;
 }
--(BOOL)dbExec:(NSString*)sql
+
+- (void)dealloc
+{
+    [self dbClose];
+}
+
+- (BOOL)dbExec:(NSString*)sql
 {
     return sqlite3_exec(db, [sql UTF8String], NULL, NULL, NULL) == SQLITE_OK;
 }
 
 - (BOOL)dbInitialize {
  
-    NSString *sql = [NSString stringWithFormat: @"pragma journal_mode = wal; pragma synchronous = normal; create table if not exists %@ (%@ text PRIMARY KEY, %@ blob,%@ integer);", TABLENAME, KEY, DATA, DUEDATE];
-    //ID INTEGER PRIMARY KEY AUTOINCREMENT
+    // Open database
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documents = [paths objectAtIndex:0];
+    NSString *database_path = [documents stringByAppendingPathComponent:DBNAME];
+    
+    if (sqlite3_open_v2([database_path UTF8String], &db, SQLITE_OPEN_READWRITE | SQLITE_OPEN_CREATE
+                        | SQLITE_OPEN_NOMUTEX | SQLITE_OPEN_SHAREDCACHE, NULL) != SQLITE_OK) {
+        sqlite3_close(db);
+        NSLog(@"Fail to open the database");
+        return false;
+    }
+    
+    // Initialize table
+    NSString *sql = [NSString stringWithFormat: @"pragma journal_mode = wal; pragma synchronous = normal; create table if not exists %@ (%@ text PRIMARY KEY, %@ blob,%@ integer);", TABLENAME, KEY, DATA, DUEDATE];//ID INTEGER PRIMARY KEY AUTOINCREMENT
+    
     if (![self dbExec:sql]) {
         return false;
     }
@@ -66,10 +72,12 @@
     stmtQuery= [self dbPrepareStmt:sql];
     sql = [NSString stringWithFormat:@"delete from %@ where key = ?;",TABLENAME];
     stmtDelete= [self dbPrepareStmt:sql];
+    sql = [NSString stringWithFormat:@"delete from %@ where due_date < ?;",TABLENAME];
+    stmtClear= [self dbPrepareStmt:sql];
     return true;
 }
 
--(void)dbClose {
+- (void)dbClose {
     
     // Clear statements
     sqlite3_stmt *stmt;
@@ -81,8 +89,10 @@
 }
 
 - (sqlite3_stmt *)dbPrepareStmt:(NSString*)sql {
+    
     sqlite3_stmt *stmt;
     int result = sqlite3_prepare_v2(db, sql.UTF8String, -1, &stmt, NULL);
+
     if (result != SQLITE_OK) {
         NSLog(@"%s line:%d sqlite stmt prepare error (%d): %s", __FUNCTION__, __LINE__, result, sqlite3_errmsg(db));
     }
@@ -90,7 +100,7 @@
     return stmt;
 }
 
-- (BOOL)dbSaveWithKey:(NSString *)key value:(NSData *)value dueDate:(NSInteger)days{
+- (BOOL)dbSave:(NSData *)value forKey:(NSString *)key dueDate:(NSInteger)days{
     sqlite3_stmt *stmt = stmtInst;
     if (!stmt) return NO;
 

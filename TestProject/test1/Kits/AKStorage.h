@@ -10,5 +10,11 @@
 
 @interface AKStorage : NSObject
 @property (strong, atomic) NSSet* itemList;
--(instancetype)init;
+- (instancetype)init;
+
+- (BOOL)dbInitialize;
+- (void)dbClose;
+- (BOOL)dbSave:(NSData *)value forKey:(NSString *)key dueDate:(NSInteger)days;
+- (BOOL)dbDeleteItemWithKey:(NSString *)key;
+- (NSData *)dbValueForKey:(NSString *)key;
 @end

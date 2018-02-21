@@ -12,7 +12,7 @@ class ViewControllerNt: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        manager.Call()
+ 
         // Do any additional setup after loading the view.
     }
 
@@ -21,6 +21,9 @@ class ViewControllerNt: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+       manager.Call()
+    }
     let manager = AKNetwork()
     
     /*
