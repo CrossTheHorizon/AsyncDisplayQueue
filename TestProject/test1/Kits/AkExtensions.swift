@@ -8,21 +8,26 @@
 
 import UIKit
 
+class AssociatedId
+{
+    var id = 0;
+}
+
 extension UIView
 {
-    static var displayID = "cs#DisplayId"
+    private static var kAssociatedId = "cs#AssociatedId"
     var DisplayId: AssociatedId!{
         get {
-            var value = objc_getAssociatedObject(self, &UIView.displayID) as? AssociatedId
+            var value = objc_getAssociatedObject(self, &UIView.kAssociatedId) as? AssociatedId
             if value == nil {
                 value = AssociatedId()
-                objc_setAssociatedObject(self, &UIView.displayID, value, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN)
+                objc_setAssociatedObject(self, &UIView.kAssociatedId, value, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN)
             }
             return value;
         }
         set {
             if let newValue = newValue {
-                objc_setAssociatedObject(self, &UIView.displayID, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN)
+                objc_setAssociatedObject(self, &UIView.kAssociatedId, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN)
             }
         }
     }

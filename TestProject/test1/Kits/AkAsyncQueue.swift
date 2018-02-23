@@ -8,11 +8,6 @@
 
 import UIKit
 
-class AssociatedId
-{
-    var id = 0;
-}
-
 class AkAsyncTask {
     var task:((_ taskITem:AkAsyncTask) -> Swift.Void)?;
     
